@@ -45,5 +45,6 @@ Move cells in ascending order with an empty one in the bottom right corner to **
 
 - pure JavaScript
 - functional programming
+- adaptive layout
 - [parcel](https://parceljs.org/) bundler
 - hosting on [firebase](https://firebase.google.com/)
