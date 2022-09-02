@@ -2,7 +2,7 @@
 
 ## Short Description
 
-Board puzzle game from childhood in pure JavaScript
+Board puzzle game from childhood in pure JavaScript (SPA)
 
 ## How to play
 
