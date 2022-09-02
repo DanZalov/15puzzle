@@ -1,4 +1,4 @@
-import image from './assets/victory.jpg'
+import image from './victory.jpg'
 
 export function numberItemDiv(number) {
   return `<div class="number-item" id="${number}"></div>`
@@ -20,7 +20,7 @@ export function victoryPictureAdd() {
   img.classList = ['img']
   document.querySelector(
     '.play-table'
-  ).outerHTML = `<div class=\"play-table background-white\">Победа!</div>`
+  ).outerHTML = `<div class=\"play-table background-white\">Victory!</div>`
   document.querySelector('.play-table').appendChild(img)
 }
 
