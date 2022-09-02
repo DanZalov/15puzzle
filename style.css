@@ -1,0 +1,85 @@
+body {
+  font-size: 16px;
+  font-weight: normal;
+
+  /* font: normal 16px 'Roboto', sans-serif; */
+  /* font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; */
+}
+
+.container {
+  width: 100vmin;
+  background-color: #f1f1f1;
+  margin: auto;
+  padding: 1.5vmin 0px;
+}
+
+.reload-btn {
+  margin: auto;
+  text-align: center;
+  width: 25vmin;
+  border-radius: 3vmin;
+  background-color: rgb(81, 173, 239);
+  border: 0px;
+  font-size: 2.5vmin;
+}
+
+.reload-btn:hover {
+  color: rgb(0, 21, 255);
+  cursor: pointer;
+}
+
+h2 {
+  text-align: center;
+}
+
+.play-table {
+  margin: auto;
+  text-align: center;
+  font-size: 13vmin;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border: 0.5vmin solid black;
+  background-color: rgb(237, 245, 247);
+  padding: 0.7vmin;
+  height: 82vmin;
+  width: 82vmin;
+}
+
+.row {
+  display: flex;
+  justify-content: space-around;
+  padding: 0.5vmin;
+}
+
+.number-item {
+  width: 17.5vmin;
+  height: 17.5vmin;
+  background-color: rgb(175, 214, 241);
+  border: 0.2vmin solid black;
+  border-radius: 3vmin;
+  padding: 0.5vmin;
+  font-size: 13vmin;
+  text-align: center;
+  line-height: 17vmin;
+}
+
+.active:hover {
+  background-color: rgb(139, 195, 235);
+  cursor: pointer;
+}
+
+.img {
+  width: 50vmin;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.background-white {
+  background-color: white;
+}
+
+.blank {
+  background-color: rgb(237, 245, 247);
+  border-color: rgb(237, 245, 247);
+}
