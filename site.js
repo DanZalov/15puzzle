@@ -5,7 +5,7 @@ import {
   randomInit,
 } from './functions.js'
 import { classInit, playTableDiv } from './pagecontent.js'
-import './styles/style.css'
+import './style.css'
 
 export const site = {
   blankIndex: 16,
