@@ -1,7 +1,7 @@
 import image from './victory.jpg'
 
 export function numberItemDiv(number) {
-  return `<div class="number-item" id="${number}"></div>`
+  return `<div class="number-item unselectable" id="${number}"></div>`
 }
 
 export function rowDiv(number) {
