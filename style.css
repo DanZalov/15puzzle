@@ -1,13 +1,14 @@
 body {
   font-size: 16px;
   font-weight: normal;
+  overscroll-behavior-y: contain;
 
   /* font: normal 16px 'Roboto', sans-serif; */
   /* font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; */
 }
 
 .container {
-  width: 100vmin;
+  width: 95vmin;
   background-color: #f1f1f1;
   margin: auto;
   padding: 1.5vmin 0px;
@@ -64,9 +65,11 @@ h2 {
   line-height: 17vmin;
 }
 
-.active:hover {
-  background-color: rgb(139, 195, 235);
-  cursor: pointer;
+@media (min-width: 768px) {
+  .active:hover {
+    background-color: rgb(139, 195, 235);
+    cursor: pointer;
+  }
 }
 
 .img {
