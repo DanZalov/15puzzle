@@ -26,6 +26,44 @@ export function getNeighborIndex(blankNumber) {
   return indexArray
 }
 
+export function getExtendedNeighborIndex(blankNumber) {
+  const indexArray = []
+  indexArray.push([])
+  if (blankNumber - 4 > 0) {
+    let tempUpValue = blankNumber - 4
+    while (tempUpValue > 0) {
+      indexArray[0].push(tempUpValue)
+      tempUpValue -= 4
+    }
+  }
+  indexArray.push([])
+  if ((blankNumber - 1) % 4 !== 0) {
+    let tempLeftValue = blankNumber - 1
+    while (tempLeftValue % 4 !== 0) {
+      indexArray[1].push(tempLeftValue)
+      tempLeftValue -= 1
+    }
+  }
+  indexArray.push([])
+  if ((blankNumber + 1) % 4 !== 1) {
+    let tempRightValue = blankNumber + 1
+    while (tempRightValue % 4 !== 1) {
+      indexArray[2].push(tempRightValue)
+      tempRightValue += 1
+    }
+  }
+  indexArray.push([])
+  if (blankNumber + 4 < 17) {
+    let tempDownValue = blankNumber + 4
+    while (tempDownValue < 17) {
+      indexArray[3].push(tempDownValue)
+      tempDownValue += 4
+    }
+  }
+  // console.dir(indexArray)
+  return indexArray
+}
+
 export function checkVictory() {
   for (let i = 1; i < 16; i++) {
     if (document.getElementById(i).textContent != i) {
@@ -93,4 +131,12 @@ export function swap() {
     $id14.textContent = $id15.textContent
     $id15.textContent = temp
   }
+}
+
+export function swapWithBlank(swapId, blankIndex) {
+  document.getElementById(blankIndex).textContent =
+    document.getElementById(swapId).textContent
+  document.getElementById(swapId).textContent = ''
+  document.getElementById(blankIndex).classList.remove('blank')
+  document.getElementById(swapId).classList.add('blank')
 }
