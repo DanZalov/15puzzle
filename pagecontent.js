@@ -1,4 +1,4 @@
-import image from './victory.jpg'
+import image from './assets/victory.jpg'
 
 export function numberItemDiv(number) {
   return `<div class="number-item unselectable" id="${number}"></div>`
@@ -20,7 +20,7 @@ export function victoryPictureAdd() {
   img.classList = ['img']
   document.querySelector(
     '.play-table'
-  ).outerHTML = `<div class=\"play-table background-white\">Victory!</div>`
+  ).outerHTML = `<div class=\"play-table background-white\">Победа!</div>`
   document.querySelector('.play-table').appendChild(img)
 }
 
@@ -36,6 +36,8 @@ export function playTableDiv() {
 
 export function classInit() {
   document.getElementById(16).classList.add('blank')
-  document.getElementById(12).classList.add('active')
-  document.getElementById(15).classList.add('active')
+  const activeArr = [4, 8, 12, 13, 14, 15]
+  activeArr.forEach((id) => {
+    document.getElementById(id).classList.add('active')
+  })
 }
