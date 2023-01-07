@@ -1,8 +1,10 @@
 import {
   checkVictory,
   checkVictoryPossibility,
-  getNeighborIndex,
+  // getNeighborIndex,
+  getExtendedNeighborIndex,
   randomInit,
+  swapWithBlank,
 } from './functions.js'
 import { classInit, playTableDiv } from './pagecontent.js'
 import './styles/style.css'
@@ -32,20 +34,33 @@ export const site = {
 
   itemSwapHandler(blankIndex) {
     const $allDivs = document.querySelectorAll('.number-item')
+    // let clickCount = 0
     if (window.screen.availWidth > 768) {
       for (let i = 0; i < 16; i++) {
         $allDivs[i].onclick = () => {
-          if (getNeighborIndex(blankIndex).includes(+$allDivs[i].id)) {
-            document.getElementById(blankIndex).textContent =
-              $allDivs[i].textContent
-            $allDivs[i].textContent = ''
-            document.getElementById(blankIndex).classList.remove('blank')
-            blankIndex = +$allDivs[i].id
-            document.getElementById(blankIndex).classList.add('blank')
-            site.blankIndex = blankIndex
-          }
-          site.activeClassChangeHandler(blankIndex)
-          checkVictory()
+          // console.log(blankIndex)
+          getExtendedNeighborIndex(blankIndex).forEach((dirArr) => {
+            if (dirArr.includes(+$allDivs[i].id)) {
+              let j = 0
+              while (dirArr[j] !== +$allDivs[i].id) {
+                this.swapWithBlankNew(dirArr[j])
+                blankIndex = dirArr[j]
+                j++
+              }
+              this.swapWithBlankNew(dirArr[j])
+              blankIndex = dirArr[j]
+              // swapWithBlank(dirArr[j], blankIndex)
+              // document.getElementById(blankIndex).textContent =
+              //   $allDivs[i].textContent
+              // $allDivs[i].textContent = ''
+              // document.getElementById(blankIndex).classList.remove('blank')
+              // blankIndex = +$allDivs[i].id
+              // document.getElementById(blankIndex).classList.add('blank')
+              // site.blankIndex = blankIndex
+              // site.activeClassChangeHandler(blankIndex)
+              // checkVictory()
+            }
+          })
         }
       }
     } else {
@@ -60,39 +75,59 @@ export const site = {
       $playTable.addEventListener('touchend', (event) => {
         const touchEndX = event.changedTouches[0].screenX
         const touchEndY = event.changedTouches[0].screenY
+        const indexArray = getExtendedNeighborIndex(blankIndex)
         if (
           (touchEndX > this.touchStartX &&
-            this.touchedDiv === blankIndex - 1) ||
+            indexArray[1].includes(this.touchedDiv)) ||
           (touchEndX < this.touchStartX &&
-            this.touchedDiv === blankIndex + 1) ||
+            indexArray[2].includes(this.touchedDiv)) ||
           (touchEndY > this.touchStartY &&
-            this.touchedDiv === blankIndex - 4) ||
-          (touchEndY < this.touchStartY && this.touchedDiv === blankIndex + 4)
+            indexArray[0].includes(this.touchedDiv)) ||
+          (touchEndY < this.touchStartY &&
+            indexArray[3].includes(this.touchedDiv))
         ) {
-          document.getElementById(blankIndex).textContent =
-            $allDivs[this.touchedDiv - 1].textContent
-          $allDivs[this.touchedDiv - 1].textContent = ''
-          document.getElementById(blankIndex).classList.remove('blank')
-          blankIndex = +$allDivs[this.touchedDiv - 1].id
-          document.getElementById(blankIndex).classList.add('blank')
-          site.blankIndex = blankIndex
+          indexArray.forEach((dirArr) => {
+            if (dirArr.includes(this.touchedDiv)) {
+              let j = 0
+              while (dirArr[j] !== this.touchedDiv) {
+                this.swapWithBlankNew(dirArr[j])
+                blankIndex = dirArr[j]
+                j++
+              }
+              this.swapWithBlankNew(dirArr[j])
+              blankIndex = dirArr[j]
+            }
+          })
         }
-        site.activeClassChangeHandler(blankIndex)
-        checkVictory()
       })
     }
   },
 
   activeClassChangeHandler(blankIndex) {
-    let activeIndArray = getNeighborIndex(blankIndex)
+    let activeIndArray = getExtendedNeighborIndex(blankIndex)
     for (let i = 1; i < 17; i++) {
       // $classList = document.getElementById(i).classList
       if (document.getElementById(i).classList.contains('active')) {
         document.getElementById(i).classList.remove('active')
       }
-      if (activeIndArray.includes(i)) {
-        document.getElementById(i).classList.add('active')
-      }
+      activeIndArray.forEach((dirArr) => {
+        if (dirArr.includes(i)) {
+          document.getElementById(i).classList.add('active')
+        }
+      })
     }
+  },
+
+  swapWithBlankNew(swapId) {
+    let blankIndex = site.blankIndex
+    document.getElementById(blankIndex).textContent =
+      document.getElementById(swapId).textContent
+    document.getElementById(swapId).textContent = ''
+    document.getElementById(blankIndex).classList.remove('blank')
+    blankIndex = swapId
+    document.getElementById(swapId).classList.add('blank')
+    site.blankIndex = blankIndex
+    site.activeClassChangeHandler(blankIndex)
+    checkVictory()
   },
 }
