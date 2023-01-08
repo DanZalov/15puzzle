@@ -8,7 +8,7 @@ Board puzzle game from childhood in pure JavaScript (SPA)
 
 Try it [here](https://javascript-15puzzle.web.app/)
 
-**Click/tap** an adjacent cell to an empty one in order to move it
+**Click(PC)/swipe(mobile)** an adjacent cell to an empty one in order to move it. Or move a bunch of cells in a line
 
 Reload page or click "**Новая игра**" to start a new game
 
