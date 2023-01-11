@@ -33,11 +33,3 @@ export function playTableDiv() {
 
   $playTable.insertAdjacentHTML('beforeend', playTableText)
 }
-
-export function classInit() {
-  document.getElementById(16).classList.add('blank')
-  const activeArr = [4, 8, 12, 13, 14, 15]
-  activeArr.forEach((id) => {
-    document.getElementById(id).classList.add('active')
-  })
-}
