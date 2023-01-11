@@ -10,7 +10,7 @@ Try it [here](https://javascript-15puzzle.web.app/)
 
 **Click(PC)/swipe(mobile)** an adjacent cell to an empty one in order to move it. Or move a bunch of cells in a line
 
-Reload page or click "**Новая игра**" to start a new game
+Click "**Новая игра**" to start a new game
 
 Move cells in ascending order with an empty one in the bottom right corner to **win**! Like that:
 
