@@ -1,12 +1,18 @@
 import {
   checkVictory,
   checkVictoryPossibility,
+  classInit,
+  clearStorage,
   // getNeighborIndex,
   getExtendedNeighborIndex,
+  getFromStorage,
   randomInit,
-  swapWithBlank,
+  setState,
+  stateManager,
+  updateStorage,
+  // swapWithBlank,
 } from './functions.js'
-import { classInit, playTableDiv } from './pagecontent.js'
+import { playTableDiv } from './pagecontent.js'
 import './styles/style.css'
 
 export const site = {
@@ -16,11 +22,11 @@ export const site = {
   touchedDiv: 0,
   render() {
     playTableDiv()
-    randomInit()
-    checkVictoryPossibility()
-    classInit()
+    this.blankIndex = stateManager()
+    classInit(this.blankIndex)
     site.newGameButton()
     site.itemSwapHandler(site.blankIndex)
+    updateStorage()
   },
 
   newGameButton() {
@@ -28,6 +34,7 @@ export const site = {
     $heading.onclick = () => {
       // checkVictoryPossibility()
       // site.blankIndex = rotateDesk()
+      clearStorage()
       window.location.reload()
     }
   },
@@ -128,6 +135,7 @@ export const site = {
     document.getElementById(swapId).classList.add('blank')
     site.blankIndex = blankIndex
     site.activeClassChangeHandler(blankIndex)
+    updateStorage()
     checkVictory()
   },
 }
