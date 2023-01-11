@@ -9,6 +9,16 @@ export function randomInit() {
   }
 }
 
+export function classInit(blankIndex) {
+  document.getElementById(blankIndex).classList.add('blank')
+  const activeArr = getExtendedNeighborIndex(blankIndex)
+  activeArr.forEach((dirArr) => {
+    dirArr.forEach((id) => {
+      document.getElementById(id).classList.add('active')
+    })
+  })
+}
+
 export function getNeighborIndex(blankNumber) {
   const indexArray = []
   if (blankNumber - 4 > 0) {
@@ -71,6 +81,7 @@ export function checkVictory() {
     }
   }
   victoryPictureAdd()
+  clearStorage()
 }
 
 export function rotateDesk() {
@@ -139,4 +150,49 @@ export function swapWithBlank(swapId, blankIndex) {
   document.getElementById(swapId).textContent = ''
   document.getElementById(blankIndex).classList.remove('blank')
   document.getElementById(swapId).classList.add('blank')
+}
+
+export function getState() {
+  let state = []
+  for (let i = 0; i < 16; i++) {
+    state.push(document.getElementById(i + 1).textContent)
+  }
+  return state
+}
+
+export function updateStorage() {
+  const state = getState()
+  localStorage.setItem('state', JSON.stringify(state))
+}
+
+export function getFromStorage() {
+  return JSON.parse(localStorage.getItem('state'))
+}
+
+export function clearStorage() {
+  localStorage.removeItem('state')
+}
+
+export function setState(state) {
+  let blankIndex
+  for (let i = 0; i < 16; i++) {
+    document.getElementById(i + 1).textContent = state[i]
+    if (!state[i]) {
+      blankIndex = i + 1
+    }
+  }
+  return blankIndex
+}
+
+export function stateManager() {
+  let blankIndex
+  const state = getFromStorage()
+  if (!state) {
+    randomInit()
+    checkVictoryPossibility()
+    blankIndex = 16
+  } else {
+    blankIndex = setState(state)
+  }
+  return blankIndex
 }
