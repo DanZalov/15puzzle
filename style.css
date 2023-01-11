@@ -2,6 +2,11 @@ body {
   font-size: 16px;
   font-weight: normal;
   overscroll-behavior-y: contain;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: translate(calc(50vw - 50%));
+  touch-action: none;
 
   /* font: normal 16px 'Roboto', sans-serif; */
   /* font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; */
