@@ -6,8 +6,6 @@ Board puzzle game from childhood in pure JavaScript (SPA)
 
 ## How to play
 
-Try it [here](https://javascript-15puzzle.web.app/)
-
 **Click(PC)/swipe(mobile)** an adjacent cell to an empty one in order to move it. Or move a bunch of cells in a line
 
 Click "**Новая игра**" to start a new game
